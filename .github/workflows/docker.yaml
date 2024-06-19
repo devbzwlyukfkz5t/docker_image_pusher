@@ -83,6 +83,9 @@ jobs:
             name_space="${name_space}_"
             # 获取镜像名例如nginx
             image_name=$(echo "$image_name_tag" | awk -F':' '{print $1}')
+            if [[ "docker" == $image_name  ]]; then
+              image_name=$(echo "$image_name_tag" | awk -F':' '{print $0}')
+            fi
             echo "image_name: $image_name"
             
             # 如果镜像存在于数组中，则添加temp_map
