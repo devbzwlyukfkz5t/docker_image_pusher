@@ -1,1 +1,1 @@
-opengrok/docker
+opengrok/docker:latest
