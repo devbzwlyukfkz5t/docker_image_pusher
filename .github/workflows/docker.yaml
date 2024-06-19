@@ -68,7 +68,10 @@ jobs:
             name_space=$(echo "$image" | awk -F'/' '{if (NF==3) print $2; else if (NF==2) print $1; else print ""}')
             echo $name_space
             echo $image_name
-            new_image="$ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/$image"
+            if [[ "docker" == $image_name  ]]; then
+              image_name=$name_space
+            fi
+            new_image="$ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/$image_name"
             echo "docker tag $image $new_image"
             docker tag $image $new_image
             echo "docker push $new_image"
