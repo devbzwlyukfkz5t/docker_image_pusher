@@ -84,7 +84,7 @@ jobs:
             # 获取镜像名例如nginx
             image_name=$(echo "$image_name_tag" | awk -F':' '{print $1}')
             if [[ "docker" == $image_name  ]]; then
-              image_name=$name_space
+              image_name=$(echo "$image" | awk -F'/' '{if (NF==3) print $2; else if (NF==2) print $1; else print ""}')
             fi
             echo "image_name: $image_name"
             
